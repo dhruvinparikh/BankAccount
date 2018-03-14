@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+private var customerCount: Int = 0
 public class BankAccount{
     //Account number, customer name, yearly interest rate, account balance as stored properties
     //public var account_number: String
@@ -78,6 +78,8 @@ public init(account_number: String, customer_name: String, interest: Double, acc
     else{
         self.account_balance=10.00
     }
+    customerCount += 1 // increment global private variable
+    print("Customer init: \(customer_name); count = \(BankAccount.getCount())")
 }
 
     public init(){
@@ -85,6 +87,22 @@ public init(account_number: String, customer_name: String, interest: Double, acc
         self.customer_name="xxx"
         self.interest=0.0
         self.account_balance=10.00
+    }
+    
+    // deinitializer
+    deinit {
+        customerCount -= 1 // decrement global private variable
+        print("Customer deinit: \(customer_name); count = \(BankAccount.count)")
+    }
+    
+    // computed read-only type property
+    public class var count: Int {
+        return customerCount
+    }
+    
+    // type method
+    public class func getCount() -> Int {
+        return self.count
     }
     
     //credit(amount:Double) which is used for depositing money
