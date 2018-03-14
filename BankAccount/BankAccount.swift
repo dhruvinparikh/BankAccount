@@ -66,11 +66,11 @@ public class BankAccount{
 public init(account_number: String, customer_name: String, interest: Double, account_balance: Double) {
     self.account_number=account_number
     self.customer_name=customer_name
-    if(interest >= 0.0 || interest <= 2.0){
+    if(interest >= 0.0 && interest <= 2.0){
     self.interest=interest
     }
     else{
-        self.interest=0.0
+       self.interest=0.0
     }
     if(account_balance >= 10.00){
     self.account_balance=account_balance
